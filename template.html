@@ -29,7 +29,7 @@ function preload() {
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	game.add.sprite(0,0,'sky');
-	scoreText = game.add.text(16, 16, "Score: 0",{fontSize:'32px', fill: '#000'});
+	scoreText = game.add.text(16, 16, "Score: 0", {fontSize: '32px', fill: '#000'});
 
 	platforms = game.add.group();
 	platforms.enableBody = true;
@@ -55,8 +55,8 @@ function create() {
 
 	stars = game.add.physicsGroup();
 	stars.enableBody = true;
-	for (var i = 0; i < 12; i++){
-		var star = stars.create(i*70, 0 'star');
+	for(var i = 0; i < 12; i++){
+		var star = stars.create(i*70, 0, 'star');
 		star.body.gravity.y = 200;
 		star.body.bounce.y = 0.7 + Math.random() * 0.2;
 	}
@@ -64,8 +64,8 @@ function create() {
 
 function update() {
 	game.physics.arcade.collide(player, platforms);
-	game.physic.arcade.collide(stars,platforms);
-	game.physics.arcade.overlap(player, stars, collectStar, null , this);
+	game.physics.arcade.collide(stars, platforms);
+	game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
 	player.body.velocity.x = 0;
 
@@ -85,10 +85,10 @@ function update() {
 	}
 }
 
-fucnton collectStar(player, star){
+function collectStar(player, star){
 	star.kill();
-	score += 90;
-	scoreText.setText("Score:" + score);
+	score += 10;
+	scoreText.setText("Score: " + score);
 }
 
 </script>
